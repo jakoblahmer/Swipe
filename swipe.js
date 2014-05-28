@@ -240,6 +240,13 @@ function Swipe(container, options) {
 
     handleEvent: function(event) {
 
+      // if jQuery is defined check for excludedElements
+      if ( window.jQuery )  {
+        if ( jQuery(event.target).closest( options.excludedElements, jQuery(container)).length > 0 )  {
+          return;
+        }
+      }
+
       switch (event.type) {
         case 'touchstart': this.start(event); break;
         case 'touchmove': this.move(event); break;
